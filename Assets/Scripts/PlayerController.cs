@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 	public int damage, startingHealth;
@@ -12,6 +13,8 @@ public class PlayerController : MonoBehaviour {
 	public int health;
 	[HideInInspector]
 	public WorldController worldController;
+	[HideInInspector]
+	public TextMeshProUGUI textHealth;
 
 	int facing = 0;
 	SpriteRenderer spr;
@@ -24,6 +27,8 @@ public class PlayerController : MonoBehaviour {
 		spr = gameObject.GetComponent<SpriteRenderer>();
 		tr = transform;
 
+		textHealth = GameObject.Find("Text Health").GetComponent<TextMeshProUGUI>();
+
 		transform.position = startingPosition;
 		pos = startingPosition;
 		worldPosition = startingPosition;
@@ -34,6 +39,8 @@ public class PlayerController : MonoBehaviour {
 
 	void Update() {
 		isDoneMoving = false;
+		textHealth.text = $"Health: {health}";
+
 		if (Input.GetKeyDown(KeyCode.A)) Move(Vector3.left);
 		if (Input.GetKeyDown(KeyCode.D)) Move(Vector3.right);
 		if (Input.GetKeyDown(KeyCode.W)) Move(Vector3.up);
