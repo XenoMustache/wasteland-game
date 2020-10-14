@@ -3,8 +3,12 @@ using UnityEngine;
 
 public class WorldController : MonoBehaviour {
 	public Vector2 size;
+
+	[HideInInspector]
 	public GameObject player;
+	[HideInInspector]
 	public GameObject[,] tiles;
+	[HideInInspector]
 	public List<GameObject> entities;
 
 	void Start() {
@@ -27,9 +31,7 @@ public class WorldController : MonoBehaviour {
 			}
 		}
 
-		player = Instantiate((GameObject)Resources.Load("Prefabs/Player"));
-		player.GetComponent<PlayerController>().worldController = this;
-
+		SpawnPlayer(new Vector2(18, 18));
 		SpawnEnemy(new Vector2(16, 16));
 		SpawnEnemy(new Vector2(17, 16));
 		SpawnEnemy(new Vector2(18, 16));
@@ -40,6 +42,12 @@ public class WorldController : MonoBehaviour {
 	void CreateTile(int xPos, int yPos) {
 		tiles[xPos, yPos] = Instantiate((GameObject)Resources.Load("Prefabs/Tile"), new Vector3(xPos, yPos), new Quaternion(), transform);
 		tiles[xPos, yPos].GetComponent<Tile>().occipied = false;
+	}
+
+	void SpawnPlayer(Vector2 position) {
+		player = Instantiate((GameObject)Resources.Load("Prefabs/Player"));
+		player.GetComponent<PlayerController>().worldController = this;
+		player.GetComponent<PlayerController>().startingPosition = position;
 	}
 
 	void SpawnEnemy(Vector2 position) {

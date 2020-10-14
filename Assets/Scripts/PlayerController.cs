@@ -1,12 +1,17 @@
 ﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-	public int damage, startingHealth, health;
+	public int damage, startingHealth;
 	public float lerpSpeed = 5;
-	public WorldController worldController;
 	public Sprite[] sprites;
 	public Vector2 startingPosition, worldPosition;
+
+	[HideInInspector]
 	public bool isDoneMoving = false;
+	[HideInInspector]
+	public int health;
+	[HideInInspector]
+	public WorldController worldController;
 
 	int facing = 0;
 	SpriteRenderer spr;

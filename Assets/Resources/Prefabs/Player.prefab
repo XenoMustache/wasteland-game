@@ -179,14 +179,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e82c9ff1164252a4390ecfe7580ac931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
+  damage: 50
   startingHealth: 500
-  health: 100
   lerpSpeed: 5
-  worldController: {fileID: 4882348231877269186, guid: 35ee9df3255a41748b07b2857fa49690, type: 3}
   sprites:
   - {fileID: 4334783836991956000, guid: 4328cc4508c13f24e86922bf553c4155, type: 3}
   - {fileID: 7388399842426930641, guid: 4328cc4508c13f24e86922bf553c4155, type: 3}
-  startingPosition: {x: 5, y: 5}
+  startingPosition: {x: 0, y: 0}
   worldPosition: {x: 0, y: 0}
   isDoneMoving: 0
+  health: 100
+  worldController: {fileID: 4882348231877269186, guid: 35ee9df3255a41748b07b2857fa49690, type: 3}

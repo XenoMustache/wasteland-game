@@ -5,10 +5,13 @@ using UnityEngine;
 public class EnemyController : TurnBound {
 	public int damage, health;
 	public float lerpSpeed = 5, maxMoveTime = 0;
-	public WorldController worldController;
-	public GameObject player;
 	public Sprite[] sprites;
 	public Vector2 startingPosition, worldPosition;
+
+	[HideInInspector]
+	public WorldController worldController;
+	[HideInInspector]
+	public GameObject player;
 
 	float range = 5, moveTime;
 	int facing = 0;
