@@ -320,9 +320,9 @@ RectTransform:
   m_Father: {fileID: 575099308}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -572.7, y: 286.3}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 113.29999, y: -30.700012}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &988860663
@@ -429,18 +429,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4882348231877269186, guid: 35ee9df3255a41748b07b2857fa49690, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4882348231877269186, guid: 35ee9df3255a41748b07b2857fa49690, type: 3}
-      propertyPath: size.x
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 4882348231877269186, guid: 35ee9df3255a41748b07b2857fa49690, type: 3}
-      propertyPath: size.y
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 4882348231877269188, guid: 35ee9df3255a41748b07b2857fa49690, type: 3}
       propertyPath: m_Name
       value: World

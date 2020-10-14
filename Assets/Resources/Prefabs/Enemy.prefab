@@ -98,7 +98,7 @@ MonoBehaviour:
   damage: 50
   health: 100
   lerpSpeed: 5
-  maxMoveTime: 0
+  maxMoveTime: 1
   sprites:
   - {fileID: 297761703447499198, guid: 5896c0e2d6c6af149bee6982b3820994, type: 3}
   - {fileID: 3680619090928529440, guid: 5896c0e2d6c6af149bee6982b3820994, type: 3}

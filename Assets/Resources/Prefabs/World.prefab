@@ -43,5 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4a5a579dfc85945a179e597b211b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 0, y: 0}
-  player: {fileID: 4454017927836682354, guid: 0e5d2fb222b41914f8408b3d46a2c5b1, type: 3}
+  size: {x: 50, y: 50}
+  player: {fileID: 0}
+  entities: []
