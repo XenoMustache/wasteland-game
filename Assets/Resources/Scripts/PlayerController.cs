@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour {
 	[HideInInspector]
 	public int damage, health;
 	[HideInInspector]
-	public bool isDoneMoving = false;
-	[HideInInspector]
 	public WorldController worldController;
 	[HideInInspector]
 	public TextMeshProUGUI textHealth;
@@ -42,7 +40,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update() {
-		isDoneMoving = false;
 		textHealth.text = $"Health: {health}";
 
 		if (Input.GetKeyDown(KeyCode.A)) Move(Vector3.left);
@@ -53,7 +50,6 @@ public class PlayerController : MonoBehaviour {
 		spr.sprite = sprites[facing];
 		tr.position = Vector3.MoveTowards(tr.position, pos, Time.deltaTime * lerpSpeed);
 
-		if (isDoneMoving) worldController.Turn();
 		if (health <= 0) Death();
 	}
 
@@ -72,7 +68,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (canMove) pos += translation;
-		isDoneMoving = true;
+		worldController.Turn();
 	}
 
 	void Death() {

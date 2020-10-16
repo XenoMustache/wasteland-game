@@ -26,9 +26,7 @@ public class EnemyController : TurnBound {
 
 	public override void OnTurn() {
 		if (data.speed < player.GetComponent<AttributeHandler>().data.speed) {
-			if (moveTime > 0) {
-				moveTime--;
-			}
+			if (moveTime > 0) moveTime--;
 			else {
 				if (Vector2.Distance(player.transform.position, transform.position) < range) {
 					if (Vector2.Distance(player.transform.position, transform.position) > 1)
@@ -41,7 +39,7 @@ public class EnemyController : TurnBound {
 			}
 		}
 		else if (data.speed > player.GetComponent<AttributeHandler>().data.speed) {
-			for (var i = 0; i < data.speed - player.GetComponent<AttributeHandler>().data.speed; i++) {
+			for (var i = 0; i < (data.speed - player.GetComponent<AttributeHandler>().data.speed); i++) {
 				if (Vector2.Distance(player.transform.position, transform.position) < range) {
 					if (Vector2.Distance(player.transform.position, transform.position) > 1)
 						Move(true);
@@ -49,7 +47,6 @@ public class EnemyController : TurnBound {
 						Attack(damage, player);
 				}
 				else Move(false);
-				//Debug.Log($"move {i}");
 			}
 		}
 		else {
@@ -57,12 +54,11 @@ public class EnemyController : TurnBound {
 				if (Vector2.Distance(player.transform.position, transform.position) > 1)
 					Move(true);
 				else
-					Attack(damage, player); // TODO: find out why this doesn't work
+					Attack(damage, player);
+
 			}
 			else Move(false);
 		}
-
-		UpdateNeighborTiles();
 	}
 
 	void Start() {
@@ -98,6 +94,7 @@ public class EnemyController : TurnBound {
 	}
 
 	void Move(bool followPlayer) {
+		UpdateNeighborTiles();
 		prevTile = curTile;
 
 		if (followPlayer) {
@@ -141,7 +138,8 @@ public class EnemyController : TurnBound {
 	}
 
 	void Attack(int dmg, GameObject target) {
-		Debug.Log("attack");
+		UpdateNeighborTiles();
+
 		if (target != null)
 			if (!target.GetComponent<AttributeHandler>().data.isInvulnerable)
 				target.GetComponent<PlayerController>().health -= dmg;
