@@ -96,15 +96,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdaedf55ad396946a54ad996f2fac8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
-  health: 100
   lerpSpeed: 5
-  maxMoveTime: 1
+  maxMoveTime: 0
   sprites:
   - {fileID: 297761703447499198, guid: 5896c0e2d6c6af149bee6982b3820994, type: 3}
   - {fileID: 3680619090928529440, guid: 5896c0e2d6c6af149bee6982b3820994, type: 3}
   startingPosition: {x: 0, y: 0}
   worldPosition: {x: 0, y: 0}
+  damage: 50
+  health: 100
   worldController: {fileID: 4882348231877269186, guid: 35ee9df3255a41748b07b2857fa49690, type: 3}
   player: {fileID: 4454017927836682354, guid: 0e5d2fb222b41914f8408b3d46a2c5b1, type: 3}
 --- !u!114 &4749819109710303243

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class EnemyController : TurnBound {
-	public float lerpSpeed = 5, maxMoveTime = 0;
+	public float lerpSpeed = 5;
 	public Sprite[] sprites;
 	public Vector2 startingPosition, worldPosition;
 
@@ -14,31 +15,51 @@ public class EnemyController : TurnBound {
 	[HideInInspector]
 	public GameObject player;
 
-	float range = 5, moveTime;
-	int facing = 0;
+	float range;
+	int facing = 0, moveTime, maxMoveTime;
 	SpriteRenderer spr;
 	Vector3 pos;
 	Transform tr;
 	GameObject prevTile, curTile;
 	AttributeTemplate data;
-
 	List<GameObject> neighborTiles;
 
 	public override void OnTurn() {
-		if (moveTime > 0) {
-			moveTime--;
+		if (data.speed < player.GetComponent<AttributeHandler>().data.speed) {
+			if (moveTime > 0) {
+				moveTime--;
+			}
+			else {
+				if (Vector2.Distance(player.transform.position, transform.position) < range) {
+					if (Vector2.Distance(player.transform.position, transform.position) > 1)
+						Move(true);
+					else
+						Attack(damage, player);
+				}
+				else Move(false); // TODO: add non-follow movement
+				moveTime = maxMoveTime;
+			}
+		}
+		else if (data.speed > player.GetComponent<AttributeHandler>().data.speed) {
+			for (var i = 0; i < data.speed - player.GetComponent<AttributeHandler>().data.speed; i++) {
+				if (Vector2.Distance(player.transform.position, transform.position) < range) {
+					if (Vector2.Distance(player.transform.position, transform.position) > 1)
+						Move(true);
+					else
+						Attack(damage, player);
+				}
+				else Move(false);
+				//Debug.Log($"move {i}");
+			}
 		}
 		else {
 			if (Vector2.Distance(player.transform.position, transform.position) < range) {
-				if (Vector2.Distance(player.transform.position, transform.position) > 1) {
+				if (Vector2.Distance(player.transform.position, transform.position) > 1)
 					Move(true);
-				}
-				else {
-					Attack(damage, player);
-				}
+				else
+					Attack(damage, player); // TODO: find out why this doesn't work
 			}
 			else Move(false);
-			moveTime = maxMoveTime;
 		}
 
 		UpdateNeighborTiles();
@@ -49,7 +70,9 @@ public class EnemyController : TurnBound {
 
 		health = data.health;
 		damage = data.damage;
+		range = data.range;
 
+		maxMoveTime = Math.Abs(data.speed);
 		moveTime = maxMoveTime;
 
 		spr = gameObject.GetComponent<SpriteRenderer>();
@@ -98,7 +121,6 @@ public class EnemyController : TurnBound {
 					prevTile.GetComponent<Tile>().occipied = false;
 				}
 			}
-			//else Attack(damage, player);
 		}
 	}
 
@@ -119,6 +141,7 @@ public class EnemyController : TurnBound {
 	}
 
 	void Attack(int dmg, GameObject target) {
+		Debug.Log("attack");
 		if (target != null)
 			if (!target.GetComponent<AttributeHandler>().data.isInvulnerable)
 				target.GetComponent<PlayerController>().health -= dmg;

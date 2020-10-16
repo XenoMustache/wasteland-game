@@ -14,13 +14,14 @@ public class PlayerController : MonoBehaviour {
 	public WorldController worldController;
 	[HideInInspector]
 	public TextMeshProUGUI textHealth;
+	[HideInInspector]
+	public AttributeTemplate data;
 
 	int facing = 0;
 	SpriteRenderer spr;
 	Vector3 pos;
 	Transform tr;
 	GameObject prevTile, curTile;
-	AttributeTemplate data;
 
 	void Start() {
 		data = GetComponent<AttributeHandler>().data;
