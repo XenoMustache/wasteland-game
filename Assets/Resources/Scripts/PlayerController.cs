@@ -2,15 +2,14 @@
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-	public int damage, startingHealth;
 	public float lerpSpeed = 5;
 	public Sprite[] sprites;
 	public Vector2 startingPosition, worldPosition;
-
+	
+	[HideInInspector]
+	public int damage, health;
 	[HideInInspector]
 	public bool isDoneMoving = false;
-	[HideInInspector]
-	public int health;
 	[HideInInspector]
 	public WorldController worldController;
 	[HideInInspector]
@@ -21,9 +20,13 @@ public class PlayerController : MonoBehaviour {
 	Vector3 pos;
 	Transform tr;
 	GameObject prevTile, curTile;
+	AttributeTemplate data;
 
 	void Start() {
-		health = startingHealth;
+		data = GetComponent<AttributeHandler>().data;
+
+		health = data.health;
+		damage = data.damage;
 		spr = gameObject.GetComponent<SpriteRenderer>();
 		tr = transform;
 
@@ -80,7 +83,9 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Attack(int dmg, GameObject target) {
-		if (target != null) target.GetComponent<EnemyController>().health -= dmg;
+		if (target != null)
+			if (!target.GetComponent<AttributeHandler>().data.isInvulnerable)
+				target.GetComponent<EnemyController>().health -= dmg;
 	}
 
 	bool CheckMovement(int xOffset, int yOffset) {

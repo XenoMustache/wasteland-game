@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 4454017927836682359}
   - component: {fileID: 4454017927836682356}
   - component: {fileID: 4454017927836682357}
+  - component: {fileID: 3064215082016144681}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -190,3 +191,17 @@ MonoBehaviour:
   isDoneMoving: 0
   health: 100
   worldController: {fileID: 4882348231877269186, guid: 35ee9df3255a41748b07b2857fa49690, type: 3}
+  textHealth: {fileID: 0}
+--- !u!114 &3064215082016144681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4454017927836682354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acebe33454a84c64d8236b9602093259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: ca36b15370b6ebf459414af7a9aef20e, type: 2}

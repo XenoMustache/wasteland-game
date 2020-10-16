@@ -3,11 +3,12 @@ using System.Linq;
 using UnityEngine;
 
 public class EnemyController : TurnBound {
-	public int damage, health;
 	public float lerpSpeed = 5, maxMoveTime = 0;
 	public Sprite[] sprites;
 	public Vector2 startingPosition, worldPosition;
 
+	[HideInInspector]
+	public int damage, health;
 	[HideInInspector]
 	public WorldController worldController;
 	[HideInInspector]
@@ -19,6 +20,7 @@ public class EnemyController : TurnBound {
 	Vector3 pos;
 	Transform tr;
 	GameObject prevTile, curTile;
+	AttributeTemplate data;
 
 	List<GameObject> neighborTiles;
 
@@ -30,7 +32,8 @@ public class EnemyController : TurnBound {
 			if (Vector2.Distance(player.transform.position, transform.position) < range) {
 				if (Vector2.Distance(player.transform.position, transform.position) > 1) {
 					Move(true);
-				} else {
+				}
+				else {
 					Attack(damage, player);
 				}
 			}
@@ -42,6 +45,11 @@ public class EnemyController : TurnBound {
 	}
 
 	void Start() {
+		data = GetComponent<AttributeHandler>().data;
+
+		health = data.health;
+		damage = data.damage;
+
 		moveTime = maxMoveTime;
 
 		spr = gameObject.GetComponent<SpriteRenderer>();
@@ -111,7 +119,9 @@ public class EnemyController : TurnBound {
 	}
 
 	void Attack(int dmg, GameObject target) {
-		if (target != null) target.GetComponent<PlayerController>().health -= dmg;
+		if (target != null)
+			if (!target.GetComponent<AttributeHandler>().data.isInvulnerable)
+				target.GetComponent<PlayerController>().health -= dmg;
 	}
 
 	Vector3 GetDirection(int index) {
