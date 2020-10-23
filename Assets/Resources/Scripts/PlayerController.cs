@@ -68,7 +68,6 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (canMove) pos += translation;
-		worldController.Turn();
 	}
 
 	void Death() {
@@ -100,11 +99,16 @@ public class PlayerController : MonoBehaviour {
 					curTile = tile.gameObject;
 
 					prevTile.GetComponent<Tile>().entity = null;
-
+					
+					worldController.Turn();
+					
 					return true;
 				}
 				else {
 					Attack(damage, tile.GetComponent<Tile>().entity);
+					
+					worldController.Turn();
+					
 					return false;
 				};
 			}
