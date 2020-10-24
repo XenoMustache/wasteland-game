@@ -45,9 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   accuracy: 1
-  speed: 0
+  speed: 20
   damage: 5
   targetPos: {x: 0, y: 0}
+  startingPos: {x: 0, y: 0}
+  wc: {fileID: 0}
   targetTile: {fileID: 0}
 --- !u!212 &6528169650973640485
 SpriteRenderer:

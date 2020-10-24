@@ -36,6 +36,8 @@ public class WorldController : MonoBehaviour {
 		SpawnEnemy(new Vector2(17, 16));
 		SpawnEnemy(new Vector2(18, 16));
 
+		SpawnProjectile(new Vector2(1, 1), new Vector2(18, 18));
+
 		tiles[15, 15].GetComponent<Tile>().occipied = true;
 	}
 
@@ -58,5 +60,13 @@ public class WorldController : MonoBehaviour {
 		enemy.GetComponent<EnemyController>().startingPosition = position;
 
 		entities.Add(enemy);
+	}
+
+	public void SpawnProjectile(Vector2 startingPos, Vector2 targetPos) {
+		var proj = Instantiate((GameObject)Resources.Load("Prefabs/Projectile"), startingPos, new Quaternion(), null).GetComponent<Projectile>();
+
+		proj.wc = this;
+		proj.startingPos = startingPos;
+		proj.targetPos = targetPos;
 	}
 }

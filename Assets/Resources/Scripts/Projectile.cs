@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
 public class Projectile : MonoBehaviour {
-	public float accuracy = 1, speed = 5;
+	public float accuracy = 1, speed = 20;
 	public int damage = 5;
-	public Vector2 targetPos;
+	public Vector2 targetPos, startingPos;
+	public WorldController wc;
 	public Tile targetTile;
 
 	SpriteRenderer spr;
@@ -11,7 +12,11 @@ public class Projectile : MonoBehaviour {
 
 	void Start() {
 		spr = gameObject.GetComponent<SpriteRenderer>();
+
 		tr = transform;
+		tr.position = startingPos;
+
+		targetTile = wc.tiles[(int)targetPos.x, (int)targetPos.y].GetComponent<Tile>();
 	}
 
 	void Update() {
