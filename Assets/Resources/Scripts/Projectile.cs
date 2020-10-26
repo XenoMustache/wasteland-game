@@ -22,7 +22,13 @@ public class Projectile : MonoBehaviour {
 	void Update() {
 		if ((Vector2)tr.position != targetPos) tr.position = Vector3.MoveTowards(tr.position, targetPos, Time.deltaTime * speed);
 		else {
-			targetTile.entity.GetComponent<AttributeHandler>().data.health -= damage;
+			if (targetTile.entity != null) {
+				if (targetTile.entity.GetComponent<PlayerController>())
+					targetTile.entity.GetComponent<PlayerController>().health -= damage;
+				else
+					targetTile.entity.GetComponent<EnemyController>().health -= damage;
+			}
+
 			Destroy(gameObject);
 		}
 	}
